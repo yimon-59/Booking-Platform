@@ -135,6 +135,11 @@ The waitlist follows FIFO ordering.
 
 ---
 
+# ERD
+
+[Entity Relationship Diagram](docs/ERD.png)
+
+---
 # Architecture
 
 The project follows a Clean Architecture-style structure.
