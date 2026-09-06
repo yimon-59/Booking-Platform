@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Rezerv.Api/Rezerv.Api.csproj" />
+  <Project Path="Rezerv.Application/Rezerv.Application.csproj" />
+  <Project Path="Rezerv.Domain/Rezerv.Domain.csproj" />
+  <Project Path="Rezerv.Infrastructure/Rezerv.Infrastructure.csproj" Id="a8d570a8-3034-4ef3-9312-52172b43c902" />
+  <Project Path="Rezerv.Tests/Rezerv.Tests.csproj" Id="2319be75-4c6d-43df-ba54-588db07cb90d" />
+</Solution>
