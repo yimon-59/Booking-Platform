@@ -1,7 +1,4 @@
 <Solution>
-  <Folder Name="/docs/">
-    <File Path="docs/ERD.png" />
-  </Folder>
   <Folder Name="/Solution Items/">
     <File Path="README.md" />
   </Folder>
