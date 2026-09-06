@@ -228,8 +228,7 @@ public class BookingService : IBookingService
                         .Where(x =>
                             x.UserId == waitlistEntry.UserId &&
                             x.RemainingCredits >= 1 &&
-                            x.Package.BusinessId ==
-                                booking.TimetableSchedule.BusinessId &&
+                            x.Package.BusinessId == booking.TimetableSchedule.BusinessId &&
                             x.Package.ExpiryDate > now)
                         .OrderBy(x => x.Id)
                         .FirstOrDefaultAsync(cancellationToken);

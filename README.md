@@ -346,16 +346,17 @@ For a larger system, the locking strategy could be further optimized depending o
 
 # Assumptions
 
-1. Package expiry is defined by the Package and applies to users purchasing that package.
-2. One successful booking consumes exactly one credit.
-3. Cancelled bookings do not count toward available slots.
-4. Only confirmed bookings are considered when checking schedule capacity.
-5. Overlapping checks apply to confirmed bookings belonging to the same user.
-6. Waitlist entries are ordered by JoinedAt.
-7. Credits are deducted when a waitlisted customer is promoted, not when joining the waitlist.
-8. A waitlisted customer must have a valid package with sufficient credits when promotion occurs.
-9. UTC is used for persisted DateTime values.
-
+1. Available packages are defined by expired date.
+2. Package expiry is defined by the Package and applies to users purchasing that package.
+3. One successful booking consumes exactly one credit.
+4. Cancelled bookings do not count toward available slots.
+5. Only confirmed bookings are considered when checking schedule capacity.
+6. Overlapping checks apply to confirmed bookings belonging to the same user.
+7. Waitlist entries are ordered by JoinedAt.
+8. Credits are deducted when a waitlisted customer is promoted, not when joining the waitlist.
+9. A waitlisted customer must have a valid package with sufficient credits when promotion occurs.
+10. Waitlist promotion follows FIFO order. If the first user does not have a valid package, sufficient credits, or a matching business, the system skips them and checks the next user.
+11. UTC is used for persisted DateTime values.
 ---
 
 # Future Improvements
