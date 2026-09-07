@@ -269,5 +269,4 @@ public class BookingService : IBookingService
             throw;
         }
     }
-
-   }
+}

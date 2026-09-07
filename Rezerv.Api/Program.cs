@@ -1,6 +1,8 @@
+using Hangfire;
+using Hangfire.MemoryStorage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Rezerv.Api.BackgroundServices;
+using Rezerv.Api.BackgroundJobs;
 using Rezerv.Application.Interfaces;
 using Rezerv.Application.Services;
 using Rezerv.Infrastructure.Data;
@@ -32,7 +34,10 @@ builder.Services.AddScoped<IPackageService, PackageService>();
 builder.Services.AddScoped<ITimetableService, TimetableService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IWaitListService, WaitListService>();
-builder.Services.AddHostedService<WaitlistExpirationBackgroundService>();
+builder.Services.AddHangfire(config =>
+    config.UseMemoryStorage());
+
+builder.Services.AddHangfireServer();
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddSwaggerGen(options =>
@@ -44,6 +49,11 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 var app = builder.Build();
+
+app.UseHangfireDashboard("/hangfire");
+
+RecurringJob.AddOrUpdate<WaitlistExpirationJob>("waitlist-expiration",job => job.ExecuteAsync(),Cron.Minutely);
+
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider

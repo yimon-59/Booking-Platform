@@ -63,8 +63,9 @@ use:
 7. Apply Database Migrations
 
 From the project repository root:
-From powershell -
-dotnet ef database update project Rezerv.Infrastructure startup-project Rezerv.Api
+From powershell or terminal -
+dotnet ef migrations add InitialCreate --project Rezerv.Infrastructure --startup-project Rezerv.Api
+dotnet ef database update --project Rezerv.Infrastructure --startup-project Rezerv.Api
 
 This creates the database tables.
 
@@ -284,17 +285,13 @@ Waiting entries remaining after the class ends can be marked `Expired`.
 
 # Background Processing
 
-The system includes a background service that periodically checks
-waiting waitlist entries.
+Hangfire is used to periodically process waitlist expiration.
 
-Every minute, it:
+A recurring job runs every minute and calls the waitlist service to
+find waiting entries whose timetable schedules have ended. These
+entries are marked as `Expired`.
 
-1. Finds waitlist entries with `Waiting` status.
-2. Checks whether the associated timetable schedule has ended.
-3. Changes eligible entries to `Expired`.
-4. Does not deduct credits because the user was never promoted.
-
-This is implemented using ASP.NET Core `BackgroundService`.
+All time comparisons use UTC.
 
 ---
 
