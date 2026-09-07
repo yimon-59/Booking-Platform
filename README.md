@@ -2,7 +2,7 @@
 
 Follow the steps below to clone, configure, and run the Rezerv Booking Engine locally.
 
-1. Prerequisites
+## 1. Prerequisites
 
 Install:
 - Git
@@ -14,18 +14,18 @@ Install:
 Redis should be available on :
 localhost:6379
 
-2. Clone the Repository
+## 2. Clone the Repository
 
 Clone the GitHub repository :
 Open terminal and type the following command and press Enter :
 git clone <REPOSITORY_URL>
 
-3. Restore NuGet Packages
+## 3. Restore NuGet Packages
 
 Navigate to the directory containing project file and run:
 dotnet restore
 
-4. Configure MySQL
+## 4. Configure MySQL
 
 Create the development database:
 Open MySql workbench and run below script - 
@@ -42,7 +42,7 @@ Configure:
 }
 Replace `YOUR_PASSWORD` with your local MySQL password.
 
-5. Start Redis
+## 5. Start Redis
 
 The application expects Redis at:
 localhost:6379
@@ -50,7 +50,7 @@ If using Docker:
 From powershell :
 docker run --name rezerv-redis -p 6379:6379 -d redis
 
-6. Configure Redis
+## 6. Configure Redis
 In:
 Rezerv.Api/appsettings.json
 use:
@@ -60,7 +60,7 @@ use:
   }
 }
 
-7. Apply Database Migrations
+## 7. Apply Database Migrations
 
 From the project repository root:
 From powershell or terminal -
@@ -69,17 +69,17 @@ dotnet ef database update --project Rezerv.Infrastructure --startup-project Reze
 
 This creates the database tables.
 
-8. Seed Development Data
+## 8. Seed Development Data
 
 When the API starts, the database seeder populates the development database with the sample users, businesses, packages, schedules, bookings, and waitlist entries.
 The seeder does not run again when users already exist.
 
-9. Build the Solution
+## 9. Build the Solution
 
 From powershell -
 dotnet build
 
-10. Run the API
+## 10. Run the API
 From powershell -
 dotnet run --project Rezerv.Api
 
@@ -91,10 +91,10 @@ Swagger provides interactive documentation and allows the API endpoints to be te
 
 Keep the terminal running.
 
-11. Test the API
+## 11. Test the API
 Use the seeded users, packages, and timetable schedules to test the booking scenarios.
 
-12. Create the Test Database
+## 12. Create the Test Database
 CREATE DATABASE RezervBooking_test;
 Open:
 Rezerv.Tests/TestDbContextFactory.cs
@@ -104,7 +104,7 @@ private const string ConnectionString =
 
 Replace 'YOUR_PASSWORD' with your local MySQL password.
 
-13. Run All Tests
+## 13. Run All Tests
 From powershell -
 dotnet test Rezerv.Tests/Rezerv.Tests.csproj
 
